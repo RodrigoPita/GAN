@@ -3,19 +3,6 @@ Projeto para a disciplina de Álgebra Linear Algorítmica (2019.2) dada pelo pro
 <br>
 Caso prefira ver pelo Google Collab, pode clicar neste <a href="https://colab.research.google.com/drive/1Px6zMkv5_IvK4l3Z_MwxWohvGvps-o8W?usp=sharing">link</a>.
 
-
-# Redes Adversariais Generativas (GANs)
-
-Minha ideia consiste em fazer um gerador de mapas para jogos, utilizando Redes Neurais Artificiais (RNAs), noções de Aprendizado de Máquinas
-**[<a href = "https://www.coursera.org/learn/machine-learning/">10</a>]**,
-mais especificamente o modelo proposto por Ian J. Goodfellow 
-**[<a href = "https://arxiv.org/pdf/1406.2661.pdf">1</a>,
-<a href = "https://colab.research.google.com/drive/1v9w6Eg8dAwXTf1qte2tTgB1mJN4qKFax">3</a>,
-<a href = "https://github.com/eriklindernoren/Keras-GAN">8</a>,
-<a href = "https://machinelearningmastery.com/generative_adversarial_networks/">9</a>,
-<a href = "http://hunterheidenreich.com/blog/what-is-a-gan/">22</a>,
-<a href = "https://github.com/RobStelling/GANs">23</a>]**, em seu paper publicado em 2014, sobre Redes Generativas Adversariais (GANs). Esse método é uma forma de treinar duas redes neurais simultaneamente. Mas para poder falar melhor sobre as GANs, precisamos aprender o que são Redes Neurais Artificiais!
-
 ## Redes Neurais Artificiais (RNAs)
 <div align = "center"><img src= "https://3.bp.blogspot.com/-hNRMQ-sJNnw/XcNvq0JqoII/AAAAAAABCbM/r1OMZEbsW4YYsyvinAnQRL-wKX8Z8d_SwCK4BGAYYCw/s1600/Redes%2BAdversariais%2BGenerativas%2B%2528GANs%2529%2B-%2BSIAc%2B%25286%2529.png"></div>
 
@@ -30,125 +17,27 @@ Cada neurônio funciona como uma função, ou seja, ele recebe uma entrada, faz 
 **[<a href = "https://towardsdatascience.com/linear-algebra-explained-in-the-context-of-deep-learning-8fcb8fca1494">29</a>]**. Tomemos X como o vetor que representa a camada de Entrada, com cada componente sendo referente a cada neurônio.
 <br>
 <br>
-$$X =
- \begin{bmatrix}
-  x1\\
-  x2\\
-  x3\\
- \end{bmatrix}
-$$
+
+        [ x1 ]
+    X = [ x2 ]
+        [ x3 ]
 <br>
 Para passar a informação à camada seguinte (Camada Oculta), precisararemos fazer o produto entre a matriz W dos pesos, que serão responsáveis por determinar, na primeira camada, quais pixels mais importam para a camada oculta e X. Outra forma de visualizar essa etapa é que ela não passa de uma soma ponderada dos valores de entrada, além disso, adicionamos um viés (bias) para tentar aproximar onde o valor do próximo neurônio começa a ser significativo;
 <br>
 <br>
-$$\begin{bmatrix}
-  a1\\
-  a2\\
-  a3\\
- \end{bmatrix}
- =
- \begin{bmatrix}
-  w1 && w2 && w3\\
-  w4 && w5 && w6\\
-  w7 && w8 && w9\\
- \end{bmatrix}
- .
- \begin{bmatrix}
-  x1\\
-  x2\\
-  x3\\
- \end{bmatrix} + bias
-$$
+
+    [ a1 ]   [ w1   w2   w3 ]   [ x1 ]
+    [ a2 ] = [ w4   w5   w6 ] . [ x2 ] + bias
+    [ a3 ]   [ w7   w8   w9 ]   [ x3 ]
 <br>
 Para finalizar, temos a função de ativação (sigmoid, ReLU, ...) que irá escalar a saída para um número real entre 0 e 1;
 <br>
 <br>
-$$\begin{bmatrix}
-  h1\\
-  h2\\
-  h3\\
- \end{bmatrix}
- =
- f\begin{pmatrix}
- \begin{bmatrix}
-  a1\\
-  a2\\
-  a3\\
- \end{bmatrix}
- \end{pmatrix} (Ativação)
- $$
-<br>
-<br>
-E esse processo se repete por quantas forem as camadas ocultas, até chegar na camada de saída.
 
-Mas para que as RNAs tenham resultados aceitáveis, elas precisam ser treinadas. Quando a Rede acabou de ser implementada, suponha que nós temos uma **Rede Discriminativa** (Rede que classifica "coisas", real ou falso) recém implementada e queremos classificar imagens de quadros como sendo no estilo de Van Gogh ou não. Para isso, vamos criar uma lista (vetor) com todas as obras do pintor e chamaremos essa de Imagens Reais e outra com obras de outros pintores, a qual chamaremos de Imagens Falsas. 
-<br>
-Agora vamos iterar pelas duas listas, entregando cada imagem, já classificada como real ou falsa, para a Rede, que as lerá como matrizes de pixels com tamanho igual a proporção de pixels. Os pixels serão recebidos pelos neurônios da camada de entrada, passarão pelas camadas ocultas até chegar na saída. Ao acabar esse processo para todas as imagens das duas listas, a Rede estará devidamente treinada e pronta para ser testada. Para a classificação de imagens, dois são os métodos de treinamento mais comumente usados, uma rede simples, pixel a pixel ou uma rede convolucional.
-<br>
-<br>
-<div align = "center"><img src = "https://1.bp.blogspot.com/-_wzsl8WtJAo/XcNt7RXWeRI/AAAAAAABCbA/Jf7mj6lC_wUuFdloA2GfpbnM_ZhVjsFtQCK4BGAYYCw/s1600/Redes%2BAdversariais%2BGenerativas%2B%2528GANs%2529%2B-%2BSIAc%2B%25285%2529.png"></div>
+    [ h1 ]     ([ a1 ])
+    [ h2 ] = f ([ a2 ]) ( Ativação )
+    [ h3 ]     ([ a3 ])
 
-## Redes Neurais Artificiais (RNAs)
-<div align = "center"><img src= "https://3.bp.blogspot.com/-hNRMQ-sJNnw/XcNvq0JqoII/AAAAAAABCbM/r1OMZEbsW4YYsyvinAnQRL-wKX8Z8d_SwCK4BGAYYCw/s1600/Redes%2BAdversariais%2BGenerativas%2B%2528GANs%2529%2B-%2BSIAc%2B%25286%2529.png"></div>
-
-A RNA representada no diagrama acima é do estilo "Feedforward", ou seja, ela recebe um dado e passa adiante até chegar na saída.
-As RNAs, no geral, são modelos compostos por camadas de "neurônios" 
-**[<a href = "https://colab.research.google.com/drive/1XvxwddJNk2gDpxSdCpNcbcc2w59sI1iT">26</a>]**
-representadas pelos círculos roxos acima.
-
-Cada neurônio funciona como uma função, ou seja, ele recebe uma entrada, faz algo com ela e passa o sinal para frente. Na imagem podemos ver as três camadas principais de uma Rede Neural, a mais da esquerda, chamada **Camada de Entrada**, de onde a informação é alimentada para Rede, as **Camadas Ocultas**, representadas pela caixa preta, que são as camadas internas da Rede, onde todos os cálculos ocorrem para transformar o significado de um dado de entrada num dado de saída e por fim, as **Camadas de Saída**, de onde recebemos os dados esperados.
-
-> Para o computador, essas camadas são representadas como vetores 
-**[<a href = "https://towardsdatascience.com/linear-algebra-explained-in-the-context-of-deep-learning-8fcb8fca1494">29</a>]**. Tomemos X como o vetor que representa a camada de Entrada, com cada componente sendo referente a cada neurônio.
-<br>
-<br>
-$$X =
- \begin{bmatrix}
-  x1\\
-  x2\\
-  x3\\
- \end{bmatrix}
-$$
-<br>
-Para passar a informação à camada seguinte (Camada Oculta), precisararemos fazer o produto entre a matriz W dos pesos, que serão responsáveis por determinar, na primeira camada, quais pixels mais importam para a camada oculta e X. Outra forma de visualizar essa etapa é que ela não passa de uma soma ponderada dos valores de entrada, além disso, adicionamos um viés (bias) para tentar aproximar onde o valor do próximo neurônio começa a ser significativo;
-<br>
-<br>
-$$\begin{bmatrix}
-  a1\\
-  a2\\
-  a3\\
- \end{bmatrix}
- =
- \begin{bmatrix}
-  w1 && w2 && w3\\
-  w4 && w5 && w6\\
-  w7 && w8 && w9\\
- \end{bmatrix}
- .
- \begin{bmatrix}
-  x1\\
-  x2\\
-  x3\\
- \end{bmatrix} + bias
-$$
-<br>
-Para finalizar, temos a função de ativação (sigmoid, ReLU, ...) que irá escalar a saída para um número real entre 0 e 1;
-<br>
-<br>
-$$\begin{bmatrix}
-  h1\\
-  h2\\
-  h3\\
- \end{bmatrix}
- =
- f\begin{pmatrix}
- \begin{bmatrix}
-  a1\\
-  a2\\
-  a3\\
- \end{bmatrix}
- \end{pmatrix} (Ativação)
- $$
 <br>
 <br>
 E esse processo se repete por quantas forem as camadas ocultas, até chegar na camada de saída.
