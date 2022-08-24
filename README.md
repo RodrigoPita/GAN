@@ -197,7 +197,7 @@ como por exemplo:
 
 * Geração de músicas com a MidiNET **[<a href = "https://arxiv.org/pdf/1703.10847.pdf">12</a>]**;
 
-<div align = "center"><img height = "277" width = "850" src= "https://www.researchgate.net/profile/Francois_Pachet/publication/319524552/figure/fig55/AS:535791153541125@1504753973323/Examples-generated-by-MidiNet.png"></div>
+<div align = "center"><img height = "277" width = "850" src= "https://blogger.googleusercontent.com/img/a/AVvXsEgm1vvgJsX0cvm0rirgddVjKXbToyNs7-aB3UEjWft-N9AUr0MbHIKWLgkF_U08_GgOT1fYAEOWGsT2z32lkPRRLydj4uhiDypwTKmXjir9nbmUv1QW1nA_La8ycsNZyy3VGIknMO35wWrOUrGVQsQHlpT2Uieg7Bew9_lxV-06UMa5VSwkpgJIRvQ"></div>
 
 * Tentativa de reprodução da voz humana a partir da geração de espectrogramas **[<a href = "https://www.youtube.com/watch?v=jSsMqjMcRAg">13</a>,
 <a href = "http://arss.sourceforge.net/">14</a>]**;
